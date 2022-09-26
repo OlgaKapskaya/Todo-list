@@ -9,7 +9,7 @@ type TodolistComponentProps = {
 
 }
 
-type TasksType = {
+export type TasksType = {
     id: number;
     title: string;
     isDone: boolean;
