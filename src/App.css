@@ -3,6 +3,31 @@
   display: flex;
 }
 
-.App > div{
+.App > div {
   margin-right: 50px;
+}
+header{
+  padding: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
+}
+.error {
+  border: red 1px solid;
+}
+
+.error-message {
+  color: red;
+}
+
+.active-filter {
+  background-color: aquamarine;
+}
+
+.is-done {
+  opacity: 0.5;
+}
+.label{
+  font-size: 12px;
+}
+.containerAddTodolist{
+  margin: 10px;
 }
