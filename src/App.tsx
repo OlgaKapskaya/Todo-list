@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState, KeyboardEvent} from 'react';
 import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
@@ -332,12 +332,18 @@ function App() {
         setTodo(todo.filter(elem => elem.todolistID !== todolistID))
 
     }
+
     const [title, setTitle] = useState("")
     const onChangeTitleTodolistHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.currentTarget.value)
     }
+    const onKeyPressAddTodolistHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            addTodolistHandler(title);
+        }
+    }
     const addTodolistHandler = (title: string) => {
-        if (title.trim() !== ""){
+        if (title.trim() !== "") {
             const newTodolist: TodolistType = {
                 todolistID: v1(),
                 title: title,
@@ -347,6 +353,7 @@ function App() {
                 students: []
             }
             setTodo([newTodolist, ...todo])
+            setTitle("")
         } else {
             alert('Error!!! Enter todolist title!')
         }
@@ -359,7 +366,8 @@ function App() {
             <header>
                 <div className={'containerAddTodolist'}>
                     <div className={'label'}> Enter todolist title:</div>
-                    <input value={title} onChange={onChangeTitleTodolistHandler}/>
+                    <input value={title} onChange={onChangeTitleTodolistHandler}
+                           onKeyPress={onKeyPressAddTodolistHandler}/>
                     <button onClick={() => addTodolistHandler(title)}> ADD</button>
                 </div>
             </header>
