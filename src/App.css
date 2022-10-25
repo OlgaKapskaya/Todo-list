@@ -1,33 +1,28 @@
-.App {
-  padding: 30px;
-  display: flex;
-}
+/*.App {*/
+/*  padding: 30px;*/
+/*  display: flex;*/
+/*}*/
 
-.App > div {
-  margin-right: 50px;
-}
-header{
-  padding: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
-}
-.error {
-  border: red 1px solid;
-}
+/*.App > div {*/
+/*  margin-right: 50px;*/
+/*}*/
 
-.error-message {
-  color: red;
-}
+/*.error {*/
+/*  border: red 1px solid;*/
+/*}*/
 
-.active-filter {
-  background-color: aquamarine;
-}
+/*.error-message {*/
+/*  color: red;*/
+/*}*/
+
+/*.active-filter {*/
+/*  background-color: aquamarine;*/
+/*}*/
 
 .is-done {
   opacity: 0.5;
 }
-.label{
-  font-size: 12px;
-}
-.containerAddTodolist{
-  margin: 10px;
-}
+/*header{*/
+/*  margin-top: 10px;*/
+/*  margin-left: 10px;*/
+/*}*/
