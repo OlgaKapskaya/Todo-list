@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {Input} from "./components/Imput";
 import {AppBar, Button, IconButton, Typography, Toolbar, Container, Paper, Grid} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
+import {
+    AddTodolistActionCreator,
+    ChangeTodolistFilterActionCreator, ChangeTodolistTitleActionCreator, RemoveTodolistActionCreator,
+    todolistReducer
+} from "./BLL/reducers/todolistReducer";
 
 export type FilterValuesType = "all" | "active" | "completed";
 export type TodolistsType = {
@@ -17,7 +22,7 @@ function App() {
     let todolistID1 = v1();
     let todolistID2 = v1();
 
-    let [todolists, setTodolists] = useState<Array<TodolistsType>>([
+    const [todolist, todolistDispatch] = useReducer(todolistReducer, [
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
@@ -60,22 +65,16 @@ function App() {
     }
 
     function changeFilter(value: FilterValuesType, todolistID: string) {
-        setTodolists(todolists.map(elem => elem.id === todolistID ? {...elem, filter: value} : elem))
+        todolistDispatch(ChangeTodolistFilterActionCreator(todolistID, value))
     }
 
     const addTodolist = (title: string) => {
-        let newTodolist: TodolistsType = {
-            id: v1(), title: title, filter: 'all'
-        }
-        setTodolists([newTodolist, ...todolists])
-        setTasks({...tasks, [newTodolist.id]: []})
+        let newID = v1()
+        todolistDispatch(AddTodolistActionCreator(newID, title))
+        setTasks({...tasks, [newID]: []})
     }
     const changeTodolistTitle = (title: string, todolistID: string) => {
-        setTodolists(todolists.map(elem => {
-            return (
-                elem.id === todolistID ? {...elem, title: title} : elem
-            )
-        }))
+        todolistDispatch(ChangeTodolistTitleActionCreator(todolistID, title))
     }
     const changeTaskTitle = (title: string, todolistID: string, taskID: string) => {
         setTasks({
@@ -87,7 +86,7 @@ function App() {
         })
     }
     const deleteTodolist = (todolistID: string) => {
-        setTodolists(todolists.filter(elem => elem.id !== todolistID))
+        todolistDispatch(RemoveTodolistActionCreator(todolistID))
     }
     return (
         <div className="App">
@@ -113,7 +112,7 @@ function App() {
                 </Grid>
 
                 <Grid container spacing={2}>
-                    {todolists.map(elem => {
+                    {todolist.map(elem => {
                         let tasksForTodolist = tasks[elem.id];
                         if (elem.filter === "active") {
                             tasksForTodolist = tasks[elem.id].filter(t => !t.isDone);

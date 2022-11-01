@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createTheme, CssBaseline, ThemeProvider} from "@material-ui/core";
+import {createTheme, ThemeProvider} from "@material-ui/core";
 import {amber, grey} from "@material-ui/core/colors";
 const theme = createTheme({
     palette: {
@@ -14,7 +14,6 @@ const theme = createTheme({
 })
 ReactDOM.render(
     <ThemeProvider theme={theme}>
-        <CssBaseline/>
     <App />
     </ThemeProvider>,
     document.getElementById('root'));

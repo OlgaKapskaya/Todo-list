@@ -2,7 +2,9 @@
 /*  padding: 30px;*/
 /*  display: flex;*/
 /*}*/
-
+body{
+  background: #424242;
+}
 /*.App > div {*/
 /*  margin-right: 50px;*/
 /*}*/
