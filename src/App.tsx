@@ -19,9 +19,9 @@ export type TodolistsType = {
 }
 
 function App() {
+
     let todolistID1 = v1();
     let todolistID2 = v1();
-
     const [todolist, todolistDispatch] = useReducer(todolistReducer, [
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},

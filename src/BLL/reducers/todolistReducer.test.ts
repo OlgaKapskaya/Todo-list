@@ -63,4 +63,5 @@ test('todolist change filter function', () => {
     expect(newState[1]).toBe(state[1])
     expect(newState[0]).not.toBe(state[0])
     expect(newState[0].filter).toBe('active')
+    expect(newState[1].filter).toBe('all')
 })

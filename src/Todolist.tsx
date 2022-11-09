@@ -16,7 +16,7 @@ import {
     DeleteOutlineOutlined, Done
 } from "@material-ui/icons";
 
-type TaskType = {
+export type TaskType = {
     id: string
     title: string
     isDone: boolean
