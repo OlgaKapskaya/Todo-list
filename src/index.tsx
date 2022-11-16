@@ -5,6 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {createTheme, ThemeProvider} from "@material-ui/core";
 import {amber, grey} from "@material-ui/core/colors";
+import AppWithRedux from "./AppWithRedux";
+import {Provider} from "react-redux";
+import {store} from "./BLL/store";
+
 const theme = createTheme({
     palette: {
         primary: amber,
@@ -14,7 +18,9 @@ const theme = createTheme({
 })
 ReactDOM.render(
     <ThemeProvider theme={theme}>
-    <App />
+        <Provider store={store}>
+            <AppWithRedux/>
+        </Provider>
     </ThemeProvider>,
     document.getElementById('root'));
 

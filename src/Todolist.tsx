@@ -15,6 +15,20 @@ import {
     CropSquare,
     DeleteOutlineOutlined, Done
 } from "@material-ui/icons";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    addTaskAC,
+    changeTaskStatusAC,
+    changeTaskTitleAC,
+    removeTaskAC,
+    TasksStateType
+} from "./BLL/reducers/taskReducer";
+import {
+    ChangeTodolistFilterActionCreator,
+    ChangeTodolistTitleActionCreator,
+    RemoveTodolistActionCreator
+} from "./BLL/reducers/todolistReducer";
+import {AppRootStateType} from "./BLL/store";
 
 export type TaskType = {
     id: string
@@ -25,33 +39,35 @@ export type TaskType = {
 type PropsType = {
     todolistID: string
     title: string
-    tasks: Array<TaskType>
-    removeTask: (taskId: string, todolistID: string) => void
-    changeFilter: (value: FilterValuesType, todolistID: string) => void
-    addTask: (title: string, todolistID: string) => void
-    changeTaskStatus: (taskId: string, isDone: boolean, todolistID: string) => void
     filter: FilterValuesType
-    changeTodolistTitle: (title: string, todolistID: string) => void
-    changeTaskTitle: (title: string, todolistID: string, taskID: string) => void
-    deleteTodolist: (todolistID: string) => void
 }
 
 export function Todolist(props: PropsType) {
 
+    const dispatch = useDispatch()
+    let tasks = useSelector<AppRootStateType, TaskType[]>(state => state.tasks[props.todolistID])
+    if (props.filter === "active") {
+        tasks = tasks.filter(t => !t.isDone);
+    }
+    if (props.filter === "completed") {
+        tasks = tasks.filter(t => t.isDone);
+    }
+
     const addTask = (title: string) => {
-        props.addTask(title, props.todolistID);
+        dispatch(addTaskAC(title, props.todolistID))
     }
 
 
-    const onAllClickHandler = () => props.changeFilter("all", props.todolistID);
-    const onActiveClickHandler = () => props.changeFilter("active", props.todolistID);
-    const onCompletedClickHandler = () => props.changeFilter("completed", props.todolistID);
+    const onAllClickHandler = () => dispatch(ChangeTodolistFilterActionCreator(props.todolistID, 'all'))
+    const onActiveClickHandler = () => dispatch(ChangeTodolistFilterActionCreator(props.todolistID, 'active'))
+    const onCompletedClickHandler = () => dispatch(ChangeTodolistFilterActionCreator(props.todolistID, 'completed'))
     const editTitleTodolist = (title: string) => {
-        props.changeTodolistTitle(title, props.todolistID)
+        dispatch(ChangeTodolistTitleActionCreator(props.todolistID, title))
     }
     const deleteTodolistHandler = () => {
-        props.deleteTodolist(props.todolistID)
+        dispatch(RemoveTodolistActionCreator(props.todolistID))
     }
+
     return <div >
         <Typography variant={'h5'}
                     color={'primary'}
@@ -69,13 +85,13 @@ export function Todolist(props: PropsType) {
         </div>
         <List>
             {
-                props.tasks.map(t => {
-                    const onClickHandler = () => props.removeTask(t.id, props.todolistID)
+                tasks.map(t => {
+                    const onClickHandler = () => dispatch(removeTaskAC(t.id, props.todolistID))
                     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                        props.changeTaskStatus(t.id, e.currentTarget.checked, props.todolistID);
+                        dispatch(changeTaskStatusAC(t.id, e.currentTarget.checked, props.todolistID))
                     }
                     const onChangeTaskTitle = (title: string) => {
-                        props.changeTaskTitle(title, props.todolistID, t.id)
+                        dispatch(changeTaskTitleAC(t.id, title, props.todolistID))
                     }
                     return <ListItem key={t.id}
                                      className={t.isDone ? "is-done" : ""}
