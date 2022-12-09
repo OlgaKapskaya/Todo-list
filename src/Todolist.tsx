@@ -2,15 +2,7 @@ import React, {memo, useCallback} from 'react';
 import {FilterValuesType} from './App';
 import {Input} from "./components/Imput";
 import {EditSpan} from "./components/EditSpan";
-import {
-    Button,
-    IconButton,
-    List, ListItem,
-    Typography
-} from "@material-ui/core";
-import {
-    DeleteOutlineOutlined
-} from "@material-ui/icons";
+
 import {useDispatch, useSelector} from "react-redux";
 import {
     addTaskAC,
@@ -22,6 +14,8 @@ import {
 } from "./BLL/reducers/todolistReducer";
 import {AppRootStateType} from "./BLL/store";
 import {Task} from "./Task";
+import {Button, IconButton, List, ListItem, Typography} from "@mui/material";
+import {DeleteOutlineOutlined} from "@mui/icons-material";
 
 export type TaskType = {
     id: string

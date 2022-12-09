@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, memo, useState} from "react";
-import {IconButton, TextField} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
 import s from './Input.module.css'
+import {IconButton, TextField} from "@mui/material";
+import {Add} from "@mui/icons-material";
 
 
 type InputProps = {

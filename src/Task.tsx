@@ -1,10 +1,10 @@
-import {Checkbox, IconButton} from "@material-ui/core";
-import {CropSquare, DeleteOutlineOutlined, Done} from "@material-ui/icons";
 import {EditSpan} from "./components/EditSpan";
 import React, {ChangeEvent, memo} from "react";
 import {TaskType} from "./Todolist";
 import {useDispatch} from "react-redux";
 import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./BLL/reducers/taskReducer";
+import {Checkbox, IconButton} from "@mui/material";
+import {CropSquare, DeleteOutlineOutlined, Done} from "@mui/icons-material";
 
 
 

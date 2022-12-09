@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {createTheme, ThemeProvider} from "@material-ui/core";
-import {amber, grey} from "@material-ui/core/colors";
+
 import AppWithRedux from "./AppWithRedux";
 import {Provider} from "react-redux";
 import {store} from "./BLL/store";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {amber, grey} from "@mui/material/colors";
 
 const theme = createTheme({
     palette: {
         primary: amber,
         secondary: grey,
-        type: 'dark'
     }
 })
 ReactDOM.render(
