@@ -42,16 +42,17 @@ function AppWithRedux() {
                 </Toolbar>
             </AppBar>
             <Container>
-                <Grid container style={{paddingTop: "10px", paddingBottom: '10px'}}> <Input
-                    addItem={addTodolist}
-                    label={"Enter todolist title"}/>
+                <Grid container style={{paddingTop: "10px", paddingBottom: '10px'}}>
+                    <Input
+                        addItem={addTodolist}
+                        label={"Enter todolist title"}/>
                 </Grid>
 
                 <Grid container spacing={2}>
                     {todolist.map(elem => {
                         return (
                             <Grid item key={elem.id}>
-                                <Paper style={{width: "230px", padding: "10px"}}
+                                <Paper style={{width: "250px", padding: "10px"}}
                                        variant={'outlined'}>
                                     <Todolist todolistID={elem.id}
                                               title={elem.title}
