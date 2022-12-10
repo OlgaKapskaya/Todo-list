@@ -85,7 +85,7 @@ export const CreateTask = () => {
     }
     return <div>
         <input placeholder='todolistID' value={todolistID} onChange={(e) => setTodolistID(e.currentTarget.value)}/>
-        <input placeholder='todolist title' value={title} onChange={(e) => setTitle(e.currentTarget.value)}/>
+        <input placeholder='task title' value={title} onChange={(e) => setTitle(e.currentTarget.value)}/>
         <button onClick={createTask}>create task</button>
         <div>RESPONSE: {JSON.stringify(state)}</div>
     </div>
@@ -121,7 +121,6 @@ export const UpdateTask = () => {
         const task: UpdateTaskType = {
             title: title,
             description: '',
-            completed: false,
             status: 1,
             priority: 1,
             startDate: new Date(),

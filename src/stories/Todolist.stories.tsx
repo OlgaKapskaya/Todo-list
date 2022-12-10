@@ -1,8 +1,7 @@
 import {ComponentMeta, ComponentStory} from "@storybook/react";
 import React from "react";
 import {ReduxStoreProviderDecorator} from "./decorators/ReduxStoreProviderDecorator";
-import {Todolist} from "../Todolist";
-import {AppWithReduxStory} from "./AppWithRedux.stories";
+import {Todolist} from "../components/Todolist/Todolist";
 
 export default {
     title: 'TODOLIST/Todolist',

@@ -1,4 +1,4 @@
-import {Task} from "../Task";
+import {Task} from "../components/Task/Task";
 import React from "react";
 import {ReduxStoreProviderDecorator} from "./decorators/ReduxStoreProviderDecorator";
 import {ComponentMeta, ComponentStory} from "@storybook/react";

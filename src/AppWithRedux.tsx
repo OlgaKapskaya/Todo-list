@@ -1,16 +1,14 @@
 import React, {useCallback} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
-import {Input} from "./components/Imput";
-import {
-    AddTodolistActionCreator
-} from "./BLL/reducers/todolistReducer";
+import {Todolist} from './components/Todolist/Todolist';
+import {Input} from "./components/Input/Input";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./BLL/store";
+import {AppRootStateType} from "./bll/store";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
 import {Menu} from "@mui/icons-material";
+import {addTodolistAC, FilterValuesType, TodolistDomainType} from "./bll/reducers/todolistReducer";
 
-export type FilterValuesType = "all" | "active" | "completed";
+
 export type TodolistsType = {
     id: string
     title: string
@@ -19,11 +17,11 @@ export type TodolistsType = {
 
 function AppWithRedux() {
 
-    const todolist = useSelector<AppRootStateType, TodolistsType[]>(state => state.todolists)
+    const todolist = useSelector<AppRootStateType, TodolistDomainType[]>(state => state.todolists)
     const dispatch = useDispatch()
 
     const addTodolist = useCallback((title: string) => {
-        dispatch(AddTodolistActionCreator(title))
+        dispatch(addTodolistAC(title))
     }, [dispatch])
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import {Input} from "../components/Imput";
+import {Input} from "../components/Input/Input";
 import {action} from "@storybook/addon-actions";
 
 export default {

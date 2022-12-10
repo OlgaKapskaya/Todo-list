@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 import AppWithRedux from "./AppWithRedux";
 import {Provider} from "react-redux";
-import {store} from "./BLL/store";
+import {store} from "./bll/store";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {amber, grey} from "@mui/material/colors";
 
